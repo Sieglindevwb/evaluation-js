@@ -12,20 +12,37 @@ const drinks = [
 const displayTeaContent = (drink) => {
   drink.type = 'tea';
 
-  updateContent(
-    'Put the kettle on, Get a teaspoon of tea in your cup, Pour the water and wait for a couple of minutes, Enjoy the perfect tea!'
-  );
+  const steps = [
+    'Put the kettle on',
+    'Get a teaspoon of tea in your cup',
+    'Pour the water and wait for a couple of minutes',
+    'Enjoy the perfect tea!',
+  ];
+
+  const contentList = document.createElement('ol');
+  steps.forEach((step) => {
+    const listItem = document.createElement('li');
+    listItem.textContent = step;
+    contentList.append(listItem);
+  });
+
+  updateContent(contentList);
 };
 
 const displaySoftDrinksContent = (drink) => {
   drink.type = 'soft drink';
 
-  updateContent("Just pour the drink, and you're ready to go!");
+  const softDrinkContent = document.createElement('p');
+  softDrinkContent.textContent = "Just pour the drink, and you're ready to go!";
+
+  updateContent(softDrinkContent);
 };
 
 const updateContent = (content) => {
   const targetDiv = document.getElementById('softDrinkContent');
-  targetDiv.innerHTML = content;
+
+  targetDiv.innerHTML = '';
+  targetDiv.appendChild(content);
 };
 
 const random = (max) => {
@@ -71,9 +88,9 @@ drinks.forEach((drink) => {
 //DONE: Generate buttons, for each one with a different color. They all represent a drink.
 //DONE: Each button other color
 //DONE: button with console log
-//TODO: make each drink in array a type
-//TODO: function when clicked on soft drink
-//TODO: Function that displays content for making tea
+//DONE: make each drink in array a type
+//DONE: function when clicked on soft drink
+//DONE: Function that displays content for making tea
 //TODO: Function when clicking on a cocktail, a picture should appear
 //TODO: make a API request
 //TODO: Main Event listener function -> so when button is clicked prepare content based on type of drink
