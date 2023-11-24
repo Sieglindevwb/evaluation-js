@@ -1,13 +1,32 @@
 const drinks = [
-  { name: 'Hugo', price: 5, isCocktail: true },
-  { name: 'Martini', price: 7, isCocktail: true },
-  { name: 'Margarita', price: 7, isCocktail: true },
-  { name: 'Manhattan', price: 9, isCocktail: true },
-  { name: 'Earl Grey tea', price: 2, isCocktail: false },
-  { name: 'Herbal tea', price: 2, isCocktail: false },
-  { name: 'Ginger ale', price: 3, isCocktail: false },
-  { name: 'Lemonade', price: 3, isCocktail: false },
+  { name: 'Hugo', price: 5, isCocktail: true, type: 'cocktail' },
+  { name: 'Martini', price: 7, isCocktail: true, type: 'cocktail' },
+  { name: 'Margarita', price: 7, isCocktail: true, type: 'cocktail' },
+  { name: 'Manhattan', price: 9, isCocktail: true, type: 'cocktail' },
+  { name: 'Earl Grey tea', price: 2, isCocktail: false, type: 'tea' },
+  { name: 'Herbal tea', price: 2, isCocktail: false, type: 'tea' },
+  { name: 'Ginger ale', price: 3, isCocktail: false, type: 'soft drink' },
+  { name: 'Lemonade', price: 3, isCocktail: false, type: 'soft drink' },
 ];
+
+const displayTeaContent = (drink) => {
+  drink.type = 'tea';
+
+  updateContent(
+    'Put the kettle on, Get a teaspoon of tea in your cup, Pour the water and wait for a couple of minutes, Enjoy the perfect tea!'
+  );
+};
+
+const displaySoftDrinksContent = (drink) => {
+  drink.type = 'soft drink';
+
+  updateContent("Just pour the drink, and you're ready to go!");
+};
+
+const updateContent = (content) => {
+  const targetDiv = document.getElementById('softDrinkContent');
+  targetDiv.innerHTML = content;
+};
 
 const random = (max) => {
   return Math.floor(Math.random() * (max + 1));
@@ -34,6 +53,14 @@ drinks.forEach((drink) => {
       console.log('a cocktail');
     } else {
       console.log('not a cocktail');
+    }
+  });
+
+  buttonDrinks.addEventListener('click', () => {
+    if (drink.type === 'soft drink') {
+      displaySoftDrinksContent(drink);
+    } else if (drink.type === 'tea') {
+      displayTeaContent(drink);
     }
   });
 
