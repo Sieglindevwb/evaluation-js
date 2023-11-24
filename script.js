@@ -93,6 +93,12 @@ const randomColor = () => {
   return 'rgb(' + red + ',' + green + ',' + blue + ')';
 };
 
+const isDarkColor = (color) => {
+  const [r, g, b] = color.match(/\d+/g).map(Number);
+  const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+  return brightness < 128;
+};
+
 const createButton = (drink) => {
   const colorButton = randomColor();
 
@@ -100,6 +106,10 @@ const createButton = (drink) => {
   buttonDrinks.classList.add('buttonDrinks');
   buttonDrinks.textContent = `${drink.name} €${drink.price}`;
   buttonDrinks.style.backgroundColor = colorButton;
+
+  if (isDarkColor(colorButton)) {
+    buttonDrinks.style.color = 'white';
+  }
 
   return buttonDrinks;
 };
