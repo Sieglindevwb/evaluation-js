@@ -1,12 +1,12 @@
 const drinks = [
-  { name: 'Hugo', price: 5 },
-  { name: 'Martini', price: 7 },
-  { name: 'Margarita', price: 7 },
-  { name: 'Manhattan', price: 9 },
-  { name: 'Earl Grey tea', price: 2 },
-  { name: 'Herbal tea', price: 2 },
-  { name: 'Ginger ale', price: 3 },
-  { name: 'Lemonade', price: 3 },
+  { name: 'Hugo', price: 5, isCocktail: true },
+  { name: 'Martini', price: 7, isCocktail: true },
+  { name: 'Margarita', price: 7, isCocktail: true },
+  { name: 'Manhattan', price: 9, isCocktail: true },
+  { name: 'Earl Grey tea', price: 2, isCocktail: false },
+  { name: 'Herbal tea', price: 2, isCocktail: false },
+  { name: 'Ginger ale', price: 3, isCocktail: false },
+  { name: 'Lemonade', price: 3, isCocktail: false },
 ];
 
 const random = (max) => {
@@ -30,7 +30,11 @@ drinks.forEach((drink) => {
   buttonDrinks.style.backgroundColor = colorButton;
 
   buttonDrinks.addEventListener('click', () => {
-    console.log('button clicked!');
+    if (drink.isCocktail === true) {
+      console.log('a cocktail');
+    } else {
+      console.log('not a cocktail');
+    }
   });
 
   menuDrinks.appendChild(buttonDrinks);
@@ -39,3 +43,4 @@ drinks.forEach((drink) => {
 //DONE: List of not cocktails and cocktails
 //DONE: Generate buttons, for each one with a different color. They all represent a drink.
 //DONE: Each button other color
+//TODO: button with console log
