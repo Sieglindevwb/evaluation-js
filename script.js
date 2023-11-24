@@ -1,14 +1,7 @@
-const drinks = [
-  { name: 'Hugo', price: 5, isCocktail: true, type: 'cocktail' },
-  { name: 'Martini', price: 7, isCocktail: true, type: 'cocktail' },
-  { name: 'Margarita', price: 7, isCocktail: true, type: 'cocktail' },
-  { name: 'Manhattan', price: 9, isCocktail: true, type: 'cocktail' },
-  { name: 'Earl Grey tea', price: 2, isCocktail: false, type: 'tea' },
-  { name: 'Herbal tea', price: 2, isCocktail: false, type: 'tea' },
-  { name: 'Ginger ale', price: 3, isCocktail: false, type: 'soft drink' },
-  { name: 'Lemonade', price: 3, isCocktail: false, type: 'soft drink' },
-];
+import drinks from './drinks.js';
+
 const buttonList = document.querySelector('#selectContent');
+let totalPrice = 0;
 
 async function getCocktailData(drink) {
   try {
@@ -43,6 +36,13 @@ const displayCocktailContent = async (drink) => {
     updateContent(cocktailImage);
   } else {
     alert('no picture for this cocktail');
+  }
+
+  if (cocktailData) {
+    totalPrice += drink.price;
+    updateTotalPrice();
+  } else {
+    alert('no picture fot this cocktail');
   }
 };
 
@@ -99,6 +99,11 @@ const isDarkColor = (color) => {
   return brightness < 128;
 };
 
+const updateTotalPrice = () => {
+  const totalElement = document.getElementById('totalPrice');
+  totalElement.textContent = `Total price: €${totalPrice}`;
+};
+
 const createButton = (drink) => {
   const colorButton = randomColor();
 
@@ -119,6 +124,9 @@ const addListClickListener = (buttonDrinks, drink) => {
     const buttonListItem = document.createElement('li');
     buttonListItem.textContent = `Clicked selected ${drink.name} for €${drink.price}`;
     buttonList.appendChild(buttonListItem);
+
+    totalPrice += drink.price;
+    updateTotalPrice();
 
     if (drink.isCocktail === true) {
       console.log('a cocktail');
@@ -144,47 +152,3 @@ drinks.forEach((drink) => {
 
   menuDrinks.appendChild(buttonDrinks);
 });
-// drinks.forEach((drink) => {
-//   const menuDrinks = document.querySelector('.container');
-//   const colorButton = randomColor();
-
-//   buttonDrinks = document.createElement('button');
-//   buttonDrinks.classList.add('buttonDrinks');
-//   buttonDrinks.textContent = `${drink.name} €${drink.price}`;
-//   buttonDrinks.style.backgroundColor = colorButton;
-
-//   buttonDrinks.addEventListener('click', () => {
-//     const buttonListItem = document.createElement('li');
-//     buttonListItem.textContent = `Clicked selected ${drink.name} for €${drink.price}`;
-//     buttonList.appendChild(buttonListItem);
-//     if (drink.isCocktail === true) {
-//       console.log('a cocktail');
-//     } else {
-//       console.log('not a cocktail');
-//     }
-//   });
-
-//   buttonDrinks.addEventListener('click', () => {
-//     if (drink.type === 'soft drink') {
-//       displaySoftDrinksContent(drink);
-//     } else if (drink.type === 'tea') {
-//       displayTeaContent(drink);
-//     } else if (drink.type === 'cocktail') {
-//       displayCocktailContent(drink);
-//     }
-//   });
-
-//   menuDrinks.appendChild(buttonDrinks);
-// });
-
-//DONE: List of not cocktails and cocktails
-//DONE: Generate buttons, for each one with a different color. They all represent a drink.
-//DONE: Each button other color
-//DONE: button with console log
-//DONE: make each drink in array a type
-//DONE: function when clicked on soft drink
-//DONE: Function that displays content for making tea
-//DONE: Function when clicking on a cocktail, a picture should appear
-//DONE: make a API request
-//DONE: Main Event listener function -> so when button is clicked prepare content based on type of drink
-//TODO: every drink that was clicked in a list
