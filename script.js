@@ -37,6 +37,7 @@ const displayCocktailContent = async (drink) => {
 
   if (cocktailData) {
     const cocktailImage = document.createElement('img');
+    cocktailImage.classList.add('imageOfCocktail');
     cocktailImage.src = cocktailData.imageURL;
 
     updateContent(cocktailImage);
