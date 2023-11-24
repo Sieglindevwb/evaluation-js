@@ -14,9 +14,6 @@ async function getCocktailData(drink) {
       return {
         imageURL: cocktail.strDrinkThumb,
       };
-    } else {
-      console.log(`Cocktail ${drink.name} not found in the API`);
-      return null;
     }
   } catch {
     console.error('Error fetching cocktail data:', error);
@@ -119,7 +116,7 @@ const createButton = (drink) => {
   return buttonDrinks;
 };
 
-const addListClickListener = (buttonDrinks, drink) => {
+const clickListener = (buttonDrinks, drink) => {
   buttonDrinks.addEventListener('click', () => {
     const buttonListItem = document.createElement('li');
     buttonListItem.textContent = `Clicked selected ${drink.name} for €${drink.price}`;
@@ -148,7 +145,7 @@ drinks.forEach((drink) => {
   const menuDrinks = document.querySelector('.container');
   const buttonDrinks = createButton(drink);
 
-  addListClickListener(buttonDrinks, drink);
+  clickListener(buttonDrinks, drink);
 
   menuDrinks.appendChild(buttonDrinks);
 });
