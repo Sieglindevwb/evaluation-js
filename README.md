@@ -19,11 +19,13 @@
 <h3>Step 3: Display Information</h3>
 <ul>
 <li>Create a div or semantic element that dynamically updates based on the selected drink.</li>
+</ul>
 
 <h3>Step 4: Track Selected Drinks</h3>
 <ul>
 <li>Keep a list in the HTML that displays every drink clicked by the user.</li>
 <li>Bonus: Show the total price of the selected drinks.</li>
+</ul>
 
 <h2>How to Run</h2>
 <p>Simply open the index.html file in a web browser to get started.</p>
