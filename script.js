@@ -43,4 +43,10 @@ drinks.forEach((drink) => {
 //DONE: List of not cocktails and cocktails
 //DONE: Generate buttons, for each one with a different color. They all represent a drink.
 //DONE: Each button other color
-//TODO: button with console log
+//DONE: button with console log
+//TODO: make each drink in array a type
+//TODO: function when clicked on soft drink
+//TODO: Function that displays content for making tea
+//TODO: Function when clicking on a cocktail, a picture should appear
+//TODO: make a API request
+//TODO: Main Event listener function -> so when button is clicked prepare content based on type of drink
